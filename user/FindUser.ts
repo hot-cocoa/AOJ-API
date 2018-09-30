@@ -1,5 +1,6 @@
 import Connection = require('../connection/Http')
 
+// ユーザ検索クラス
 export class FindUser {
 
     // IDに対するユーザを取得
