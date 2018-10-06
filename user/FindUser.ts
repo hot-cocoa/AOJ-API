@@ -1,15 +1,20 @@
-import Connection = require('../connection/Http')
+import Connection = require('../connection/Http');
+import { APIConst } from '../settings/const';
 
 // ユーザ検索クラス
 export class FindUser {
-
     // IDに対するユーザを取得
     findById(id: string) {
-        const url: string = AOJ_USER_URL + id;
+        const url: string = APIConst.AOJ_USER_URL + id;
 
         // データを取得
-        const userStr = new Connection.Http().sendGetRequest(url);
+        new Connection.Http().sendGetRequest(url, this.afterConnection);
+    }
 
-        // TODO: 結果パース + 格納
+    // HTTP通信後の処理
+    afterConnection(response: string) {
+        const obj = JSON.parse(response);
+        // TODO: 処理追加
+        return obj;
     }
 }
