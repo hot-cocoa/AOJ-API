@@ -24,6 +24,9 @@ export class Http {
                 // textデータ(Json形式)をパースしてコールバック関数に渡す
                 callback(request.responseText);
             }
+            else {
+                // TODO: 例外処理追加
+            }
         };
 
         // HTTPリクエストをサーバへ送信
