@@ -32,7 +32,7 @@ export class Http {
             if (request.readyState === 4 &&
                 request.status     === 200) {
                 // textデータ(Json形式)をパースしてコールバック関数に渡す
-                callback(request.responseText);
+                afterConnection(request.responseText);
             }
             else {
                 // TODO: 例外処理追加
