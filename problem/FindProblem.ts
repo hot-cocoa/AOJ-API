@@ -29,32 +29,26 @@ export class FindProblem {
 
     // 全問題を取得
     findAllProblems(page: number = PAGE_DEFAULT_VALUE,
-                    size: number = SIZE_DEFAULT_VALUE) {
+                    size: number = SIZE_DEFAULT_VALUE,
+                    afterConnection: (response: string) => void) {
 
         const url: string = APIConst.ALL_PROBLEM_URL
                             + this.addOption(page, size);
 
         // データを取得
-        new Http().sendGetRequest(url, this.afterConnection);
+        new Http().sendGetRequest(url, afterConnection);
     }
 
     // ユーザIDに対する全問題を取得
     findAllProblemsByUserId(id: string,
                             page: number = PAGE_DEFAULT_VALUE,
-                            size: number = SIZE_DEFAULT_VALUE) {
-                                
+                            size: number = SIZE_DEFAULT_VALUE,
+                            afterConnection: (response: string) => void) {
+
         const url: string = APIConst.ALL_PROBLEM_BY_ID_URL + id
                             + this.addOption(page, size);
 
         // データを取得
-        new Http().sendGetRequest(url, this.afterConnection);
-    }
-
-    // HTTP通信後の処理
-    afterConnection(response: string) {
-        const obj = JSON.parse(response);
-
-        // TODO: 通信後の処理
-        return obj;
+        new Http().sendGetRequest(url, afterConnection);
     }
 }

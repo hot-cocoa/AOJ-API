@@ -1,17 +1,27 @@
 // HTTP通信クラス
 export class Http {
     // HTTP通信(GET)
-    sendGetRequest(url: string, /* 通信後処理: */ callback) {
-        return this.sendRequest('GET', url, callback);
+    sendGetRequest(
+        url: string,
+        afterConnection: (response: string) => void
+    ) {
+        return this.sendRequest('GET', url, afterConnection);
     }
 
     // HTTP通信(POST)
-    sendPostRequest(url: string, /* 通信後処理: */ callback) {
-        return this.sendRequest('POST', url, callback);
+    sendPostRequest(
+        url: string,
+        afterConnection: (response: string) => void
+    ) {
+        return this.sendRequest('POST', url, afterConnection);
     }
 
     // HTTP通信
-    sendRequest(type: string, url: string, callback) {
+    sendRequest(
+        type: string,
+        url: string,
+        afterConnection: (response: string) => void
+    ) {
         // リクエスト作成・送信
         const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
         const request = new XMLHttpRequest();
